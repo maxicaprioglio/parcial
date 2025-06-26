@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}NeoTech{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'web/css/index.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+{% include "web/partials/portada.html" %}
+
+{% include "web/partials/seccion.html" %}
+
+{% include "web/partials/contacto.html" %}
+
+{% endblock %}
+
+
+

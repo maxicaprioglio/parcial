@@ -1,0 +1,71 @@
+/* formulario */ 
+.form-container {
+  font-family: var(--font-textos);
+  color: var(--color-gris);
+  background: #1e1e1e;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  width: 100%;
+  max-width: 800px;
+}
+.fp-texto-principal {
+  color: var(--color-gris);
+  font-family: var(--font-textos-bold);
+  text-shadow: 0px 0px 10px rgba(173, 5, 145, 0.8);
+  margin-bottom: 20px;
+}
+.fp-texto-secundario {
+  color: var(--color-gris);
+  font-family: var(--font-textos);
+}
+
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--color-gris);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background: var(--color-negro);
+  color: var(--color-gris);
+  font-size: 1em;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 5px #00ffff;
+}
+
+.button-formulario {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-violeta);
+  color: var(--color-gris);
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button-formulario:hover {
+  background-color: var(--color-violeta);
+}
+
+/* Modal respuesta */
+.modal-respuesta{
+  background-color: rgba(0,0,0,0.5);
+  font-family: var(--font-textos);
+}
+
+
+

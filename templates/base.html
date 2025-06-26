@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="NeoTech" />
+    <meta name="author" content="Maximiliano Caprioglio" />
+    <link rel="icon" href="{% static 'imagenes/favicon.png' %}" type="image/png">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- font en link porque local algo tiene que no agarra -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+
+    <!-- estilo global -->
+    <link rel="stylesheet" href="{% static 'css/globalStyles.css' %}" />
+
+    <!-- estilo especificos -->
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body>
+    {% include 'header.html' %}
+
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    {% include 'footer.html' %}
+
+    <!-- Bootstrap js-->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- extra-js -->
+    {% block extra_js %}{% endblock %}
+
+  </body>
+</html>

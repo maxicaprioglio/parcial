@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/* fonts y variables */
+@font-face {
+  font-family: "Orbitron-local";
+  src: url("../fonts/Orbitron/static/Orbitron-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Roboto-local";
+  src: url("../fonts/Roboto/static/Roboto-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Roboto-bold-local";
+  src: url("../fonts/Roboto/static/Roboto-Bold.ttf") format("ttf");
+}
+
+:root {
+  --color-negro: #0f0f0f;
+  --color-violeta: #8f00ff;
+  --color-magenta: #00ffe0;
+  --color-gris: #d9d9d9;
+  --font-titulos: "Orbitron";
+  --font-textos: "Roboto";
+  --font-textos-bold: "Roboto-bold";
+}
+
+body {
+  background-color: var(--color-negro);
+}
+
+/* HEADER */
+
+.texto-marca {
+  font-family: var(--font-titulos);
+  color: var(--color-gris);
+  font-size: xx-large; 
+  text-shadow: 0px 0px 10px rgba(0, 255, 224, 0.8);
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+.texto-marca:hover {
+  color: var(--color-magenta);
+  text-shadow: 0px 0px 5px  var(--color-magenta);
+}
+
+.texto-nav {
+  font-family: var(--font-textos);
+  font-size: larger;
+  color: var(--color-magenta);
+  background-color: transparent;
+}
+.texto-nav:hover{
+  border-bottom-color: var(--color-magenta) 1px;
+  font-family: var(--font-textos-bold);
+  color: var(--color-magenta);
+}
+.texto-nav:active{
+  color: var(--color-magenta);
+}
+.boton-navbar{
+  background-color: transparent; 
+  border: none;
+  top: 0px;
+  right: 20px;
+  z-index: 1040;
+}
+.boton-navbar:hover {
+  color: var(--color-magenta);
+  text-shadow: 0px 0px 5px #00ffe0;
+}
+
+.list-container-item{
+position: relative;
+display: block;
+}
+.boton-offcanvas{
+  color: var(--color-magenta);
+}
+
+.boton-offcanvas:hover{
+  color: var(--color-magenta);
+  text-shadow: 0px 0px 5px  var(--color-magenta);
+}
+
+
+/* FOOTER */
+footer {
+  font-family: var(--font-textos);
+  font-size: 1rem;
+  color: var(--color-magenta);
+}
+.neon-copy {
+  text-shadow:
+    0 0 5px #00ffe0,
+    0 0 10px #00ffe0,
+    0 0 20px #00ffe0,
+    0 0 40px #00ffe0;
+  animation: parpadeo 1.2s infinite alternate;
+
+}
+
+@keyframes parpadeo {
+  0% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px #00ffe0,
+      0 0 10px #00ffe0,
+      0 0 20px #00ffe0,
+      0 0 40px #00ffe0;
+  }
+  100% {
+    opacity: 0.3;
+    text-shadow: none;
+  }
+}

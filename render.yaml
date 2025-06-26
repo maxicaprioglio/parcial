@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: HIPOTECARIO
+    env: python
+    buildCommands: |
+      pip install -r requirements.txt && 
+      python manage.py migrate && 
+      python manage.py collectstatic --noinput
+    startCommand: "gunicorn neotech.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: neotech.settings.production

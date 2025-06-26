@@ -1,0 +1,66 @@
+{% load static %}
+
+<header>
+  <div
+    class="container-fluid d-flex navbar-dark align-items-center justify-content-around py-2 px-3"
+  >
+    <a href="{% url 'index' %}" class="text-decoration-none text-reset" target="_blank" rel="noopener noreferrer">
+      <h1 class="texto-marca">NeoTech</h1>
+    </a>
+    <nav class="d-none d-md-flex gap-3">
+      <a href="{% url 'proyectos' %}" class="btn texto-nav">Proyectos</a>
+      <a href="{% url 'contacto' %}" class="btn texto-nav">Contacto</a>
+      <a href="{% url 'forma_parte' %}" class="btn texto-nav">Formá parte</a>
+    </nav>
+
+    <span class="px-3"></span>
+  </div>
+</header>
+
+<button
+  class="btn py-1 py-sm-2 px-1 px-sm-4 position-fixed boton-navbar"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#offcanvasRight"
+  aria-controls="offcanvasRight"
+>
+  <svg
+    width="40"
+    height="40"
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect x="8" y="12" width="24" height="4" rx="2" fill="#00ffe0" />
+    <rect x="8" y="24" width="24" height="4" rx="2" fill="#00ffe0" />
+  </svg>
+</button>
+
+<div
+  class="offcanvas offcanvas-end text-bg-dark"
+  tabindex="-1"
+  id="offcanvasRight"
+  aria-labelledby="offcanvasRightLabel"
+>
+  <div class="offcanvas-header">
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="list-group">
+      <li class="list-container-item">
+        <a href="{% url 'proyectos' %}" class="btn texto-nav">Proyectos</a>
+      </li>
+      <li class="list-container-item">
+        <a href="{% url 'contacto' %}" class="btn texto-nav">Contacto</a>
+      </li>
+      <li class="list-container-item">
+        <a href="{% url 'forma_parte' %}" class="btn texto-nav">Formá parte</a>
+      </li>
+    </ul>
+  </div>
+</div>

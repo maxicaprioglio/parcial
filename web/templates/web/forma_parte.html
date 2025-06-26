@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Forma Parte{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'web/css/forma_parte.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="container-fluid d-flex flex-column align-items-center justify-content-center p-1 p-xl-5">
+  <div class="form-container text-center">
+    <h3 class="fp-texto-principal">¡Sumate a nuestro equipo!</h3>
+    <h6 class="fp-texto-secundario">
+      ¿Te apasiona la inteligencia artificial y su aplicación en el mundo real?
+    </h6>
+    <h6 class="fp-texto-secundario">
+      En nuestra start-up de IA enfocada en la optimización de procesos
+      industriales, estamos construyendo el futuro con tecnología de vanguardia
+      y talento con visión.
+    </h6>
+    <h4 class="fp-texto-secundario">¡Queremos conocerte!</h4>
+    <form class="pt-2" id="formulario" method="post">
+      {% csrf_token %}
+      
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required />
+      <div class="form-text text-danger mb-1" id="error_nombre"></div>
+
+      <label for="apellido">Apellido</label>
+      <input type="text" id="apellido" name="apellido" required />
+      <div class="form-text text-danger mb-1" id="error_apellido"></div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+      <div class="form-text text-danger mb-1" id="error_email"></div>
+
+      <label for="linkedin">LinkedIn</label>
+      <input
+        type="url"
+        id="linkedin"
+        name="linkedin"
+        placeholder="https://www.linkedin.com/in/tuusuario"
+      />
+      <div class="form-text text-danger mb-1" id="error_linkedin"></div>
+
+      <label for="mensaje">Mensaje</label>
+      <textarea
+        id="mensaje"
+        name="mensaje"
+        rows="5"
+        placeholder="Contanos por qué querés sumarte..."
+        required
+      ></textarea>
+      <div class="form-text text-danger mt-1" id="error_mensaje"></div>
+      
+      <button type="submit" class="button-formulario">
+        <span
+          id="spinner"
+          class="spinner-border spinner-border-sm me-2"
+          role="status"
+          aria-hidden="true"
+          style="display: none"
+          ></span>
+        Enviar Postulación
+      </button>
+      
+      <!-- mensaje de exito -->
+      <div class="form-text text-success mb-1" id="success_message"></div>
+      <div class="form-text text-danger mb-1" id="error_message"></div>
+
+
+    </form>
+  </div>
+</section>
+
+{% if respuesta %}
+<!-- Modal de respuesta -->
+<div class="modal d-block show modal-respuesta" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="respuestaModalLabel">Gracias por contactarte</h5>
+        <button type="button" class="btn-close" aria-label="Cerrar" onclick="window.location.href='{% url 'forma_parte' %}'"></button>
+      </div>
+      <div class="modal-body">
+        {{ respuesta }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'forma_parte' %}'">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %} 
+
+{% block extra_js %}
+<script src="{% static 'web/js/formar_parte.js' %}"></script>
+{% endblock %}
+

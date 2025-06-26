@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'web/css/contacto.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="container-fluid d-flex flex-column align-items-center justify-content-center p-1 p-xl-5">
+  <div class="form-container text-center">
+    <h3 class="fp-texto-principal">¡Consultanos!</h3>
+    <form class="pt-2"  id="contacto" method="post">
+      {% csrf_token %}
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" required />
+      <div class="form-text text-danger mb-1" id="error_nombre"></div>
+
+      <label for="apellido">Apellido</label>
+      <input type="text" id="apellido" name="apellido" required />
+      <div class="form-text text-danger mb-1" id="error_apellido"></div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+      <div class="form-text text-danger mb-1" id="error_email"></div>
+
+      <label for="mensaje">Mensaje</label>
+      <textarea
+        id="mensaje"
+        name="mensaje"
+        rows="5"
+        placeholder="Contáctanos en qué podemos ayudarte y te contactaremos."
+        required
+      ></textarea>
+      <div class="form-text text-danger mb-1" id="error_mensaje"></div>
+
+      <button type="submit" class="button-formulario">
+        <span
+          id="spinner"
+          class="spinner-border spinner-border-sm me-2"
+          role="status"
+          aria-hidden="true"
+          style="display: none"
+          ></span>
+        Enviar
+      </button>
+      <div class="form-text text-success mb-1" id="success_message"></div>
+      <div class="form-text text-danger mt-1" id="error_general"></div>
+    </form>
+  </div>
+</section>
+{% endblock %} 
+
+{% block extra_js %}
+<script src="{% static 'web/js/contacto.js' %}"></script>
+{% endblock %}
+
