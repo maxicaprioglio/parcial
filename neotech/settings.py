@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-otmdb$o1kv^)==nli_@*e!3h#335as!s74e!=&e0l10c*$nl(i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://neotech-43ts.onrender.com']
 
 
 # Application definition
