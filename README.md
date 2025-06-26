@@ -2,3 +2,4 @@
 ## Segundo Parcial
 
 api externa que tira frases con su autor
+https://phrasesapi.onrender.com/getAllPhrases
