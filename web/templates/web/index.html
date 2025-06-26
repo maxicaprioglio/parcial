@@ -16,20 +16,12 @@
 
 {% endblock %}
 
-{% block extra_js %}
-<script>
-    const printer = document.getElementById("printer");
 
-    fetch("https://phrasesapi.onrender.com/getAllPhrases")
-        .then(res => res.json())
-        .then(data => {
-            const frase = data[Math.floor(Math.random() * data.length)];
-            printer.innerHTML = frase.phrase + " — " + frase.author;
-    });
-
-</script>
-{% endblock %}
 
 {% block footer %}
 {% include "web/partials/footer.html" %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'web/js/api.js' %}"></script>
 {% endblock %}
