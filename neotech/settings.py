@@ -80,16 +80,12 @@ LOGOUT_REDIRECT_URL = 'login'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neotech_db',
-        'USER': 'postgres',
-        'PASSWORD': 'capri1980',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://neotech_m9hr_user:TvDt1wdawE4pJoOrSTK8ICyUF3AJKkA7@dpg-d1e9h0euk2gs73afds0g-a.oregon-postgres.render.com/neotech_m9hr',
+        conn_max_age=600,
+        ssl_require=True,
+        )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
