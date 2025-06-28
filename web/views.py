@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core.signing import Signer, BadSignature
 from django.core.mail import send_mail
 from web.models import CustomUser
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
 import json
@@ -179,7 +179,7 @@ def eliminar_consulta(request, consulta_id):
     except Postulantes.DoesNotExist:
         return render(request, 'creditos/panel.html', {'error': 'Consulta no encontrada'})
 
-@csrf_exempt 
+@csrf_protect
 @api_view(['GET', 'POST'])
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def editar_consulta(request, consulta_id):
