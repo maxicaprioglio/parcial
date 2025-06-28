@@ -179,17 +179,24 @@ def eliminar_consulta(request, consulta_id):
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def editar_consulta(request, consulta_id):
-    consulta = get_object_or_404(Consulta, id=consulta_id)
-
     if request.method == 'POST':
-        form = ConsultaForm(request.POST, instance=consulta)
-        if form.is_valid():
-            form.save()
-            return redirect('panel')
-    else:
-        form = ConsultaForm(instance=consulta)
+        try:
+            data = json.loads(request.body)
+            consulta = get_object_or_404(Postulantes, id=consulta_id)
 
-    return render(request, 'creditos/editar_consulta.html', {'form': form})
+            consulta.categoria = data.get('categoria', consulta.categoria)
+            consulta.nombre = data.get('nombre', consulta.nombre)
+            consulta.mail = data.get('mail', consulta.mail)
+            consulta.linkedin = data.get('linkedin', consulta.linkedin)
+            consulta.mensaje = data.get('mensaje', consulta.mensaje)
+
+            consulta.save()
+
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=400)
+
+    return JsonResponse({'error': 'Método no permitido'}, status=405)
 
 def login_view(request):
     if request.method == 'POST':

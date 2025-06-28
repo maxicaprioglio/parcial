@@ -1,5 +1,6 @@
 {% extends 'base_panel.html' %} 
 {% load static %} 
+
 {% block title %}Panel{% endblock %} 
 
 {% block extra_css %}
@@ -7,7 +8,6 @@
 {% endblock %} 
 
 {% block content %}
-
 <div class="container text-white">
   <div class="row">
     <div class="col-md-12">
@@ -38,10 +38,56 @@
       <tbody id="tabla_consultas"></tbody>
       <div id="error_tabla" class="text-danger text-center mt-3"></div>
     </table>
+    <!-- Modal -->
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="formEditar">
+            <div class="modal-header">
+              <h5 class="modal-title">Editar Consulta</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Cerrar"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" id="editarId" />
+              <div class="mb-3">
+                <label for="editarCategoria" class="form-label"
+                  >Categoría</label
+                >
+                <input type="text" id="editarCategoria" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="editarNombre" class="form-label">Nombre</label>
+                <input type="text" id="editarNombre" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="editarMail" class="form-label">Email</label>
+                <input type="email" id="editarMail" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="editarLinkedin" class="form-label">LinkedIn</label>
+                <input type="text" id="editarLinkedin" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="editarMensaje" class="form-label">Mensaje</label>
+                <textarea id="editarMensaje" class="form-control"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %} 
-  
+
 {% block extra_js %}
 <script src="{% static 'web/js/panel.js' %}"></script>
 {% endblock %}

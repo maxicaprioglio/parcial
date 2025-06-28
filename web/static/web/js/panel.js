@@ -12,7 +12,9 @@ function renderizarConsultas(consultas) {
   tabla.innerHTML = "";
   consultas.forEach((consulta) => {
     const fila = document.createElement("tr");
-    const fecha = new Date(consulta.fecha_postulante).toLocaleDateString("es-AR");
+    const fecha = new Date(consulta.fecha_postulante).toLocaleDateString(
+      "es-AR"
+    );
 
     // Actualizar contadores según la categoría de la consulta
     if (consulta.categoria === "Comercial") {
@@ -33,10 +35,16 @@ function renderizarConsultas(consultas) {
       <td>${consulta.linkedin}</td>
       <td>${consulta.mensaje}</td>
       <td>
-        <a href="{% url 'editar_consulta' consulta.id %}" title="Editar">
+        <button class="btn-editar btn btn-sm btn-outline-primary" 
+          data-id="${consulta.id}"
+          data-categoria="${consulta.categoria}"
+          data-nombre="${consulta.nombre}"
+          data-mail="${consulta.mail}"
+          data-linkedin="${consulta.linkedin}"
+          data-mensaje="${consulta.mensaje}">
           <i class="bi bi-pencil-square"></i>
-        </a>
-        <a href="{% url 'eliminar_consulta' consulta.id %}" title="Eliminar">
+        </button>
+        <a href="/eliminar/${consulta.id}/" title="Eliminar">
           <i class="bi bi-trash"></i>
         </a>
       </td>
@@ -49,6 +57,64 @@ function renderizarConsultas(consultas) {
   });
 }
 
+// Manejo del formulario de nueva consulta
+document.addEventListener("click", function (e) {
+  if (e.target.closest(".btn-editar")) {
+    const btn = e.target.closest(".btn-editar");
+    document.getElementById("editarId").value = btn.dataset.id;
+    document.getElementById("editarCategoria").value = btn.dataset.categoria;
+    document.getElementById("editarNombre").value = btn.dataset.nombre;
+    document.getElementById("editarMail").value = btn.dataset.mail;
+    document.getElementById("editarLinkedin").value = btn.dataset.linkedin;
+    document.getElementById("editarMensaje").value = btn.dataset.mensaje;
+
+    new bootstrap.Modal(document.getElementById("modalEditar")).show();
+  }
+});
+
+// Manejo del formulario de edición
+document.getElementById("formEditar").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const id = document.getElementById("editarId").value;
+  const datos = {
+    categoria: document.getElementById("editarCategoria").value,
+    nombre: document.getElementById("editarNombre").value,
+    mail: document.getElementById("editarMail").value,
+    linkedin: document.getElementById("editarLinkedin").value,
+    mensaje: document.getElementById("editarMensaje").value,
+  };
+
+  fetch(`/editar/${id}/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(datos),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Error al actualizar");
+      return res.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
+        return fetch("/api/consultas/"); // recargar datos actualizados
+      } else {
+        alert("Error: " + data.error);
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      renderizarConsultas(data);
+    })
+    .catch((err) => {
+      alert("Hubo un problema al actualizar.");
+      console.error(err);
+    });
+});
+
+// api de consultas
 fetch("/api/consultas/")
   .then((res) => {
     if (!res.ok) throw new Error("No autorizado o error en la respuesta");
