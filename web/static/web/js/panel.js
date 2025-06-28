@@ -1,3 +1,19 @@
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+const csrftoken = getCookie("csrftoken");
+
 function renderizarConsultas(consultas) {
   const tabla = document.getElementById("tabla_consultas");
   const consulta_comercial = document.getElementById("consulta_comercial");
@@ -75,21 +91,6 @@ document.addEventListener("click", function (e) {
 // Manejo del formulario de edición
 document.getElementById("formEditar").addEventListener("submit", function (e) {
   e.preventDefault();
-   function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      const cookies = document.cookie.split(";");
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === name + "=") {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  }
-  const csrftoken = getCookie("csrftoken");
 
   const id = document.getElementById("editarId").value;
   const datos = {
@@ -114,14 +115,16 @@ document.getElementById("formEditar").addEventListener("submit", function (e) {
     })
     .then((data) => {
       if (data.success) {
-        bootstrap.Modal.getInstance(document.getElementById("modalEditar")).hide();
+        bootstrap.Modal.getInstance(
+          document.getElementById("modalEditar")
+        ).hide();
         return fetch("/api/consultas/"); // recargar datos actualizados
       } else {
         alert("Error: " + data.error);
       }
     })
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       renderizarConsultas(data);
     })
     .catch((err) => {
