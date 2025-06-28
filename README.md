@@ -2,4 +2,4 @@
 ## Segundo Parcial
 
 api externa que tira frases con su autor
-https://phrasesapi.onrender.com/getAllPhrases
+https://blue-bee-464003.hostingersite.com/frases/random
