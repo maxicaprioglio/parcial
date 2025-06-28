@@ -168,6 +168,7 @@ def proyectos(request):
 def panel(request):
     return render(request, 'web/panel.html')
 
+
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def eliminar_consulta(request, consulta_id):
     try:
@@ -177,6 +178,7 @@ def eliminar_consulta(request, consulta_id):
     except Postulantes.DoesNotExist:
         return render(request, 'creditos/panel.html', {'error': 'Consulta no encontrada'})
 
+@api_view(['GET', 'POST'])
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def editar_consulta(request, consulta_id):
     if request.method == 'POST':
