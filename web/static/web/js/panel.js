@@ -118,7 +118,7 @@ document.getElementById("formEditar").addEventListener("submit", function (e) {
         bootstrap.Modal.getInstance(
           document.getElementById("modalEditar")
         ).hide();
-        return fetch("/api/consultas/"); // recargar datos actualizados
+        return fetch("/api/consultas/");
       } else {
         alert("Error: " + data.error);
       }
