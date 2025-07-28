@@ -8,5 +8,84 @@
 {% endblock %}
 
 {% block content %}
+
+<section class="proyectos">
+  <h2>Proyectos Destacados</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>NeoBot</h3>
+      <p>Robot de inspección autónoma con visión artificial y sensores LIDAR que reduce un 35% las paradas no programadas.</p>
+    </div>
+    <div class="card">
+      <h3>SmartFlow</h3>
+      <p>Optimización de líneas de producción con IA en tiempo real, aumentando un 20% la productividad y reduciendo un 15% de consumo energético.</p>
+    </div>
+    <div class="card">
+      <h3>PredictAI</h3>
+      <p>Mantenimiento predictivo que analiza vibraciones y temperatura para anticipar fallas y reducir costos en un 40%.</p>
+    </div>
+    <div class="card">
+      <h3>NeoVision</h3>
+      <p>Control de calidad inteligente por visión artificial, disminuyendo en un 50% los defectos en producción.</p>
+    </div>
+    <div class="card">
+      <h3>AutoLog</h3>
+      <p>Logística interna automatizada con vehículos autónomos, optimizando los tiempos en un 25%.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+body {
+  background-color: #0a0a0f;
+  font-family: 'Segoe UI', sans-serif;
+  color: #e0e0e0;
+}
+
+.proyectos {
+  text-align: center;
+  padding: 40px;
+}
+
+.proyectos h2 {
+  font-size: 2.5rem;
+  color: #00ffff;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  background: linear-gradient(145deg, #111111, #1a1a1f);
+  border: 1px solid #00ffff55;
+  box-shadow: 0 0 10px #00ffff55;
+  border-radius: 12px;
+  width: 260px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h3 {
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #cfcfcf;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #00ffffaa;
+}
+</style>
+
 {% endblock %} 
 
