@@ -143,4 +143,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MAILS_HABILITADOS = ['maxicaprioglio@gmail.com','annavillegas@live.com.ar', 'Ana.sol.centur@gmail.com','juan_ignaortiz@outlook.com','iakitrapiella27@hotmail.com']
+MAILS_HABILITADOS = ['mcaprioglio@uces.edu.ar','maxicaprioglio@gmail.com','annavillegas@live.com.ar', 'Ana.sol.centur@gmail.com','juan_ignaortiz@outlook.com','iakitrapiella27@hotmail.com']
