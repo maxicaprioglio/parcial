@@ -81,7 +81,7 @@ LOGOUT_REDIRECT_URL = 'login'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://neotech_db_z4gz_user:gJnFwgDNJzdMLaP6k2rZWhGqnihrbmQj@dpg-d4u1ql75r7bs73fmid80-a.oregon-postgres.render.com/neotech_db_z4gz',
+        default='postgresql://neotech_db_z4gz_user:gJnFwgDNJzdMLaP6k2rZWhGqnihrbmQj@dpg-d4u1ql75r7bs73fmid80-a/neotech_db_z4gz',
         conn_max_age=600,
         ssl_require=True,
         )
