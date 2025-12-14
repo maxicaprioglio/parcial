@@ -286,3 +286,16 @@ def consultas_api(request):
     postulantes = Postulantes.objects.all()
     serializer = PostulanteSerializer(postulantes, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def consultas_api_frases(request):
+    try:
+        response = requests.get("https://blue-bee-464003.hostingersite.com/frases/random")
+        data = response.json()
+
+        return JsonResponse({
+            "frase": data.get("frase"),
+            "autor": data.get("autor")
+        })
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
