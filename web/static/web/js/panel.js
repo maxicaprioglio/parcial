@@ -47,6 +47,7 @@ function renderizarConsultas(consultas) {
       <td>${consulta.categoria}</td>
       <td>${fecha}</td>
       <td>${consulta.nombre}</td>
+      <td>${consulta.apellido}</td>
       <td>${consulta.mail}</td>
       <td>${consulta.linkedin}</td>
       <td>${consulta.mensaje}</td>
@@ -54,7 +55,9 @@ function renderizarConsultas(consultas) {
         <button class="btn-editar btn btn-sm btn-outline-primary" 
           data-id="${consulta.id}"
           data-categoria="${consulta.categoria}"
+          data-fecha="${consulta.fecha_postulante}"
           data-nombre="${consulta.nombre}"
+          data-apellido="${consulta.apellido}"
           data-mail="${consulta.mail}"
           data-linkedin="${consulta.linkedin}"
           data-mensaje="${consulta.mensaje}">
@@ -79,7 +82,9 @@ document.addEventListener("click", function (e) {
     const btn = e.target.closest(".btn-editar");
     document.getElementById("editarId").value = btn.dataset.id;
     document.getElementById("editarCategoria").value = btn.dataset.categoria;
+    document.getElementById("editarFecha").value = btn.dataset.fecha;
     document.getElementById("editarNombre").value = btn.dataset.nombre;
+    document.getElementById("editarApellido").value = btn.dataset.apellido;
     document.getElementById("editarMail").value = btn.dataset.mail;
     document.getElementById("editarLinkedin").value = btn.dataset.linkedin;
     document.getElementById("editarMensaje").value = btn.dataset.mensaje;
@@ -95,7 +100,9 @@ document.getElementById("formEditar").addEventListener("submit", function (e) {
   const id = document.getElementById("editarId").value;
   const datos = {
     categoria: document.getElementById("editarCategoria").value,
+    fecha_postulante: document.getElementById("editarFecha").value,
     nombre: document.getElementById("editarNombre").value,
+    apellido: document.getElementById("editarApellido").value,
     mail: document.getElementById("editarMail").value,
     linkedin: document.getElementById("editarLinkedin").value,
     mensaje: document.getElementById("editarMensaje").value,

@@ -188,7 +188,9 @@ def editar_consulta(request, consulta_id):
             consulta = get_object_or_404(Postulantes, id=consulta_id)
 
             consulta.categoria = data.get('categoria', consulta.categoria)
+            consulta.fecha_postulante = data.get('fecha_postulante', consulta.fecha_postulante) 
             consulta.nombre = data.get('nombre', consulta.nombre)
+            consulta.apellido = data.get('apellido', consulta.apellido)
             consulta.mail = data.get('mail', consulta.mail)
             consulta.linkedin = data.get('linkedin', consulta.linkedin)
             consulta.mensaje = data.get('mensaje', consulta.mensaje)
@@ -316,7 +318,7 @@ def crear_proyecto(request):
             return redirect("administrar")
     else:
         form = ProyectoForm()
-    return render(request, "web/form.html", {"form": form})
+    return render(request, "web/proyecto_form.html", {"form": form})
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def editar_proyecto(request, pk):
