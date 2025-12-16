@@ -163,7 +163,8 @@ def contacto(request):
     return render(request, 'web/contacto.html')
 
 def proyectos(request):
-    return render(request,'web/proyectos.html')
+    proyectos = Proyecto.objects.all()
+    return render(request,'web/proyectos.html', {"proyectos": proyectos})
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def panel(request):
@@ -171,12 +172,7 @@ def panel(request):
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def administrar(request):
-    proyectos = Proyecto.objects.all()
-    return render(request, "proyectos.html", {"proyectos": proyectos})
-
-
-    return render(request, 'web/administrar.html')
-
+    return render(request, "web/administrar.html")
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def eliminar_consulta(request, consulta_id):
