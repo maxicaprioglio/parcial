@@ -1,5 +1,6 @@
 import re
 from django import forms
+from web.models import Proyecto
 
 class ConsultaForm(forms.Form):
     nombre = forms.CharField(
@@ -76,3 +77,8 @@ class ConsultaForm(forms.Form):
             raise forms.ValidationError("Ingresa un email válido.")
         return email
     
+class ProyectoForm(forms.ModelForm):
+    class Meta:
+        model = Proyecto
+        fields = ['titulo', 'descripcion']
+

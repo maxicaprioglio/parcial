@@ -7,7 +7,26 @@
 {% endblock %} 
 
 {% block content %}
-<h2 class="text-white">Administrar Usuarios</h2>
+<h2 class="text-white">Administrar Proyectos</h2>
+<a href="{% url 'crear_proyecto' %}" class="btn btn-success">Nuevo Proyecto</a>
+<table class="table">
+  <tr>
+    <th>Título</th>
+    <th>Descripción</th>
+    <th>Acciones</th>
+  </tr>
+  {% for proyecto in proyectos %}
+  <tr>
+    <td>{{ proyecto.titulo }}</td>
+    <td>{{ proyecto.descripcion }}</td>
+    <td>
+      <a href="{% url 'editar_proyecto' proyecto.pk %}" class="btn btn-primary">Editar</a>
+      <a href="{% url 'eliminar_proyecto' proyecto.pk %}" class="btn btn-danger">Eliminar</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
 {% endblock %} 
 
 {% block extra_js %}

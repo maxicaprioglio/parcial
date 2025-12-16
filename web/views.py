@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
 import json
 from django.shortcuts import get_object_or_404
-from web.forms import ConsultaForm
+from web.forms import ConsultaForm, ProyectoForm
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -171,10 +171,6 @@ def panel(request):
     return render(request, 'web/panel.html')
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
-def administrar(request):
-    return render(request, "web/administrar.html")
-
-@user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def eliminar_consulta(request, consulta_id):
     try:
         consulta = Postulantes.objects.get(id=consulta_id)
@@ -303,3 +299,41 @@ def consultas_api_frases(request):
         })
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)
+
+
+## Administrar Proyecto Management Views
+@user_passes_test(lambda u: u.is_authenticated and u.is_valid)
+def administrar(request):
+    proyectos = Proyecto.objects.all()
+    return render(request, "web/administrar.html", {"proyectos": proyectos})
+
+@user_passes_test(lambda u: u.is_authenticated and u.is_valid)
+def crear_proyecto(request):
+    if request.method == "POST":
+        form = ProyectoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("administrar")
+    else:
+        form = ProyectoForm()
+    return render(request, "web/form.html", {"form": form})
+
+@user_passes_test(lambda u: u.is_authenticated and u.is_valid)
+def editar_proyecto(request, pk):
+    proyecto = get_object_or_404(Proyecto, pk=pk)
+    if request.method == "POST":
+        form = ProyectoForm(request.POST, instance=proyecto)
+        if form.is_valid():
+            form.save()
+            return redirect("administrar")
+    else:
+        form = ProyectoForm(instance=proyecto)
+    return render(request, "web/form.html", {"form": form})
+
+@user_passes_test(lambda u: u.is_authenticated and u.is_valid)
+def eliminar_proyecto(request, pk):
+    proyecto = get_object_or_404(Proyecto, pk=pk)
+    if request.method == "POST":
+        proyecto.delete()
+        return redirect("administrar")
+    return render(request, "web/confirmar_eliminar.html", {"proyecto": proyecto})
