@@ -328,7 +328,7 @@ def editar_proyecto(request, pk):
             return redirect("administrar")
     else:
         form = ProyectoForm(instance=proyecto)
-    return render(request, "web/form.html", {"form": form})
+    return render(request, "web/proyecto_form.html", {"form": form})
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def eliminar_proyecto(request, pk):
