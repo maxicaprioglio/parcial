@@ -12,6 +12,23 @@
 <section class="proyectos">
   <h2>Proyectos Destacados</h2>
   <div class="cards">
+    {% for proyecto in proyectos %}
+      <div class="card">
+        <h3>{{ proyecto.titulo }}</h3>
+        <p>{{ proyecto.descripcion }}</p>
+      </div>
+    {% empty %}
+      <p>No hay proyectos cargados todavía.</p>
+    {% endfor %}
+  </div>
+</section>
+
+
+
+<!--
+<section class="proyectos">
+  <h2>Proyectos Destacados</h2>
+  <div class="cards">
     <div class="card">
       <h3>NeoBot</h3>
       <p>Robot de inspección autónoma con visión artificial y sensores LIDAR que reduce un 35% las paradas no programadas.</p>
@@ -34,6 +51,6 @@
     </div>
   </div>
 </section>
-
+-->
 {% endblock %} 
 

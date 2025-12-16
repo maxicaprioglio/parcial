@@ -19,7 +19,7 @@ from web.forms import ConsultaForm
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from web.models import Postulantes  
+from web.models import Postulantes, Proyecto
 from web.serializers import PostulanteSerializer  
 
 
@@ -171,6 +171,10 @@ def panel(request):
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def administrar(request):
+    proyectos = Proyecto.objects.all()
+    return render(request, "proyectos.html", {"proyectos": proyectos})
+
+
     return render(request, 'web/administrar.html')
 
 
