@@ -15,4 +15,5 @@ urlpatterns = [
     path('activar/<str:token>/', views.activar_usuario, name='activar_usuario'),
     path('eliminar/<int:consulta_id>/', views.eliminar_consulta, name='eliminar_consulta'),
     path('editar/<int:consulta_id>/', views.editar_consulta, name='editar_consulta'),
+    path('administrar/', views.administrar, name='administrar'),
 ]

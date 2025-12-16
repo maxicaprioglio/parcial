@@ -168,6 +168,9 @@ def proyectos(request):
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
 def panel(request):
     return render(request, 'web/panel.html')
+@user_passes_test(lambda u: u.is_authenticated and u.is_valid)
+def administrar(request):
+    return render(request, 'web/administrar.html')
 
 
 @user_passes_test(lambda u: u.is_authenticated and u.is_valid)
