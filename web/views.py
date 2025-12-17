@@ -23,6 +23,8 @@ from web.models import Postulantes, Proyecto
 from web.serializers import PostulanteSerializer  
 import logging
 logger = logging.getLogger(__name__)
+from datetime import datetime
+
 
 
 
@@ -192,9 +194,16 @@ def editar_consulta(request, consulta_id):
 
             data = json.loads(request.body.decode('utf-8'))
             consulta = get_object_or_404(Postulantes, id=consulta_id)
+            fecha_str = data.get('fecha_postulante')
+            if fecha_str:
+                try:
+                    # Ajustá el formato al que mandás desde el frontend
+                    consulta.fecha_postulante = datetime.strptime(fecha_str, "%Y-%m-%d").date()
+                except ValueError:
+                    # Si el formato no coincide, devolvés error claro
+                    return JsonResponse({'success': False, 'error': 'Formato de fecha inválido, usar YYYY-MM-DD'}, status=400)
 
             consulta.categoria = data.get('categoria', consulta.categoria)
-            consulta.fecha_postulante = data.get('fecha_postulante', consulta.fecha_postulante) 
             consulta.nombre = data.get('nombre', consulta.nombre)
             consulta.apellido = data.get('apellido', consulta.apellido)
             consulta.mail = data.get('mail', consulta.mail)

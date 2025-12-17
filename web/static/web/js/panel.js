@@ -107,6 +107,7 @@ document.getElementById("formEditar").addEventListener("submit", function (e) {
     linkedin: document.getElementById("editarLinkedin").value,
     mensaje: document.getElementById("editarMensaje").value,
   };
+  console.log(JSON.stringify(datos))
 
   fetch(`/editar/${id}/`, {
     method: "POST",
