@@ -83,7 +83,9 @@ document.addEventListener("click", function (e) {
     document.getElementById("editarId").value = btn.dataset.id;
     document.getElementById("editarCategoria").value = btn.dataset.categoria;
     console.log(btn.dataset.fecha);
-    document.getElementById("editarFecha").value = btn.dataset.fecha;
+    document.getElementById("editarFecha").value = new Date(btn.dataset.fecha).toLocaleDateString(
+      "es-AR"
+    );
     document.getElementById("editarNombre").value = btn.dataset.nombre;
     document.getElementById("editarApellido").value = btn.dataset.apellido;
     document.getElementById("editarMail").value = btn.dataset.mail;
