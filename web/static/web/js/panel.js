@@ -85,9 +85,6 @@ document.addEventListener("click", function (e) {
     document.getElementById("editarFecha").value = btn.dataset.fecha;
     document.getElementById("editarNombre").value = btn.dataset.nombre;
     document.getElementById("editarApellido").value = btn.dataset.apellido;
-    console.log(btn.dataset.mail);
-    console.log(document.getElementById("editarMail"));
-    console.log(btn.dataset.email);
     document.getElementById("editarMail").value = btn.dataset.mail;
     document.getElementById("editarLinkedin").value = btn.dataset.linkedin;
     document.getElementById("editarMensaje").value = btn.dataset.mensaje;
