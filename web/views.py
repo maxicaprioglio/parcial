@@ -21,6 +21,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from web.models import Postulantes, Proyecto
 from web.serializers import PostulanteSerializer  
+import logging
+logger = logging.getLogger(__name__)
+
 
 
 
@@ -184,6 +187,9 @@ def eliminar_consulta(request, consulta_id):
 def editar_consulta(request, consulta_id):
     if request.method == 'POST':
         try:
+            logger.debug("Datos recibidos: %s", data)   # log nivel debug
+            logger.info("Editando consulta con ID %s", consulta_id)  # log nivel info
+
             data = json.loads(request.body.decode('utf-8'))
             consulta = get_object_or_404(Postulantes, id=consulta_id)
 
