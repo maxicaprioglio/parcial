@@ -21,11 +21,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from web.models import Postulantes, Proyecto
 from web.serializers import PostulanteSerializer  
-import logging
-logger = logging.getLogger(__name__)
-from datetime import datetime
-
-
 
 
 
@@ -189,21 +184,11 @@ def eliminar_consulta(request, consulta_id):
 def editar_consulta(request, consulta_id):
     if request.method == 'POST':
         try:
-            logger.debug("Datos recibidos: %s", data)   # log nivel debug
-            logger.info("Editando consulta con ID %s", consulta_id)  # log nivel info
-
-            data = json.loads(request.body.decode('utf-8'))
+            data = json.loads(request.body.decode('utf-8'));
             consulta = get_object_or_404(Postulantes, id=consulta_id)
-            fecha_str = data.get('fecha_postulante')
-            if fecha_str:
-                try:
-                    # Ajustá el formato al que mandás desde el frontend
-                    consulta.fecha_postulante = datetime.strptime(fecha_str, "%Y-%m-%d").date()
-                except ValueError:
-                    # Si el formato no coincide, devolvés error claro
-                    return JsonResponse({'success': False, 'error': 'Formato de fecha inválido, usar YYYY-MM-DD'}, status=400)
 
             consulta.categoria = data.get('categoria', consulta.categoria)
+            consulta.fecha_postulante = data.get('fecha_postulante', consulta.fecha_postulante) 
             consulta.nombre = data.get('nombre', consulta.nombre)
             consulta.apellido = data.get('apellido', consulta.apellido)
             consulta.mail = data.get('mail', consulta.mail)

@@ -82,12 +82,7 @@ document.addEventListener("click", function (e) {
     const btn = e.target.closest(".btn-editar");
     document.getElementById("editarId").value = btn.dataset.id;
     document.getElementById("editarCategoria").value = btn.dataset.categoria;
-    console.log(btn.dataset.fecha);
-    const fechaEdit = new Date(btn.dataset.fecha).toLocaleDateString(
-      "es-AR"
-    );
-    console.log(fechaEdit);
-    document.getElementById("editarFecha").value = fechaEdit;
+    document.getElementById("editarFecha").value = btn.dataset.fecha;
     document.getElementById("editarNombre").value = btn.dataset.nombre;
     document.getElementById("editarApellido").value = btn.dataset.apellido;
     document.getElementById("editarMail").value = btn.dataset.mail;
@@ -112,7 +107,6 @@ document.getElementById("formEditar").addEventListener("submit", function (e) {
     linkedin: document.getElementById("editarLinkedin").value,
     mensaje: document.getElementById("editarMensaje").value,
   };
-  console.log(JSON.stringify(datos))
 
   fetch(`/editar/${id}/`, {
     method: "POST",
