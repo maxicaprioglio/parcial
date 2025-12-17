@@ -55,7 +55,7 @@ function renderizarConsultas(consultas) {
         <button class="btn-editar btn btn-sm btn-outline-primary" 
           data-id="${consulta.id}"
           data-categoria="${consulta.categoria}"
-          data-fecha="${fecha}"
+          data-fecha="${consulta.fecha_postulante}"
           data-nombre="${consulta.nombre}"
           data-apellido="${consulta.apellido}"
           data-mail="${consulta.mail}"
