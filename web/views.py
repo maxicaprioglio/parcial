@@ -184,7 +184,7 @@ def eliminar_consulta(request, consulta_id):
 def editar_consulta(request, consulta_id):
     if request.method == 'POST':
         try:
-            data = json.loads(request.body)
+            data = json.loads(request.body.decode('utf-8'))
             consulta = get_object_or_404(Postulantes, id=consulta_id)
 
             consulta.categoria = data.get('categoria', consulta.categoria)
